@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+<style>
+	.grid-item {
+		border: 1px solid black;
+        padding: 20px;
+        background-color: white;
+        color: black;
+    }
+    header {
+    	display: flex;
+		border-bottom: 1px solid black;
+		font-weight: bold;
+		font-size: 20px;
+		background-color: #f2f2f2;
+      	color: black;
+		height: 80px;
+		justify-content: center;
+		align-items: flex-end;
+    }
+    
+	.container {
+		display: grid;
+        grid-template-columns: repeat(16, 1fr);
+        grid-template-rows: repeat(auto-fit, 40px);
+        border: 7px solid #f2f2f2;
+        height: 800px;
+        background-color: #f2f2f2;
+    }
+
+    footer {
+
+		display: block;
+        border-top: 1px solid black;
+        background-color: #f2f2f2;
+        height: 100px;
+    }
+
+</style>
+</head>
+<body>
+
+<header class="header">Etch-a-Sketch</header>
+<br>
+<button type="button" id="btn">Reset</button>
+<br>
+<div class="container"></div>
+<br>
+
+<footer></footer>
+
+<script>
+
+	container = document.querySelector('.container');
+    
+    hovers = document.querySelector('.container');
+	hovers.addEventListener("mouseover", function( event ) {
+		event.target.style.backgroundColor = "black";
+	});
+
+    reset = document.querySelector('button');
+    reset.addEventListener("click", function() {
+		newPage();
+    });
+    
+    function checkAns(){
+		let newGridAns = Number(prompt('How many squares do you want? X 				by X '));
+		if (newGridAns > 100) {
+			alert("No numbers bigger than 100");
+		} else if (newGridAns < 100) {
+            createDIV(newGridAns);
+        }
+    }
+
+    function delPage() {
+
+    }
+
+    function newPage() {
+		var elem = document.querySelectorAll('.grid-item');
+        //elem.parentNode.removeChild(elem);
+        for (var i = 0; i < elem.length; i++) {
+            elem[i].style.backgroundColor = "white";
+
+        }
+           //elem.style.display = 'none';
+        checkAns();
+    }
+
+	function createDivVar() {
+		let divArray = [];
+		for (let i = 1; i < 17; i++) {
+			let newDiv = "div" + i;
+            divArray.push(newDiv);   
+        }
+        return divArray;
+	}
+
+    function createDIV(columnx) {
+		let divVars = createDivVar();
+        let product = columnx * columnx;
+        for (let i = 1; i < product + 1 ; i++) {
+			divVars[i] = document.createElement('div');
+            divVars[i].classList.add('grid-item');
+            divVars[i].textContent = i;
+			container.appendChild(divVars[i]);
+        }
+    }
+
+    createDIV(16);
+
+</script>
+
+</body>
+</html>
